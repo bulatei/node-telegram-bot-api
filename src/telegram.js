@@ -1961,6 +1961,29 @@ class TelegramBot extends EventEmitter {
 
     return this._request('sendMediaGroup', opts);
   }
+
+  /**
+   * Returns Array of `BotCommand`.
+   * @param  {Object} [options] Additional Telegram query options
+   * @return {Promise}
+   * @see https://core.telegram.org/bots/api#getmycommads
+   */
+  getMyCommands(form = {}) {
+    return this._request('getMyCommands', { form });
+  }
+
+  /**
+     * Returns `True`.
+     * @param {Array} commands 
+     * @param  {Object} [options] Additional Telegram query options
+     * @return {Promise}
+     * @see https://core.telegram.org/bots/api#setmycommads
+     */
+  setMyCommands(commands, form = {}) {
+    form.commands = JSON.stringify(commands);
+    return this._request('setMyCommands', { form });
+  }
+
 }
 
 module.exports = TelegramBot;
